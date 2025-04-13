@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Songs That Remind Me of You</title>
+  <style>
+   body {
+      font-family: 'Arial', sans-serif;
+      color: white;
+      text-align: center;
+      background: url('lo.jpg') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 40px;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+    }
+
+    .song-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 20px;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 500px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .song-info {
+      flex: 1;
+    }
+
+    .song-title {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    .song-artist {
+      font-size: 0.95em;
+      color: #fbd8e3;
+    }
+
+    img {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 10px;
+    }
+    .nav-button {
+      background-color: rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 12px 25px;
+      border: 2px solid white;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Songs that remind me of you</h1>
+
+  <div class="song-card">
+    <img src="im1.jpg" alt="Ninna Kanda">
+    <div class="song-info">
+      <div class="song-title">Ninna Kanda</div>
+      <div class="song-artist">Kunal Ganjawala</div>
+      <audio controls>
+        <source src="song1.mp3" type="audio/mp3">
+      </audio>
+    </div>
+  </div>
+
+  <div class="song-card">
+    <img src="im2.jpg" alt="Telephone Gelathi">
+    <div class="song-info">
+      <div class="song-title">Telephone Gelathi</div>
+      <div class="song-artist">Rajesh Krishnan</div>
+      <audio controls>
+        <source src="song2.mp3" type="audio/mp3">
+      </audio>
+    </div>
+  </div>
+
+  <div class="song-card">
+    <img src="im3.jpg" alt="Ee Janmavu">
+    <div class="song-info">
+      <div class="song-title">Ee Janmavu</div>
+      <div class="song-artist">Sonu Nigam</div>
+      <audio controls>
+        <source src="song3.mp3" type="audio/mp3">
+      </audio>
+    </div>
+  </div>
+  <div class="song-card">
+    <img src="im4.jpg" alt="Mayavi">
+    <div class="song-info">
+      <div class="song-title">Mayavi</div>
+      <div class="song-artist">Sanjith Hegde and Sonu Nigam</div>
+      <audio controls>
+        <source src="song4.mp3" type="audio/mp3">
+      </audio>
+    </div>
+  </div>
+  <div class="song-card">
+    <img src="im5.jpg" alt="Parichayavade">
+    <div class="song-info">
+      <div class="song-title">Parichayavade</div>
+      <div class="song-artist">B. Ajaneesh Loknath, Ritesh G Rao</div>
+      <audio controls>
+        <source src="song5.mp3" type="audio/mp3">
+      </audio>
+    </div>
+  </div>
+  <div class="nav-buttons">
+    <button class="nav-button" onclick="goToPreviousPage()">← Previous Page</button>
+  </div>
+
+
+  <!-- Repeat for more songs -->
+
+</body>
+<script>   function goToPreviousPage() {
+  window.history.back();
+}</script>
+</html>

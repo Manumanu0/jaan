@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>search</title>
+  <style>
+    body {
+      background-color: #121212; /* Dark background */
+      color: #e8eaed;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      border-bottom: 1px solid #3c4043;
+      background-color: #1f1f1f; /* Dark background for top bar */
+    }
+
+    .top-bar .back {
+      color: #8ab4f8;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .top-bar .icons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .top-bar .icons span {
+      color: #8ab4f8;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .message {
+      padding: 60px 20px;
+      font-size: 18px;
+      color: #e8eaed;
+      text-align: center;
+    }
+
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .search-bar input {
+      padding: 10px;
+      font-size: 18px;
+      border-radius: 4px;
+      border: none;
+      outline: none;
+      width: 80%;
+      max-width: 400px;
+      background-color: #333333; /* Dark background for input */
+      color: #e8eaed; /* Light text color */
+    }
+
+    .top-bar input {
+      padding: 10px;
+      font-size: 18px;
+      border-radius: 4px;
+      border: none;
+      outline: none;
+      width: 60%;
+      background-color: #333333; /* Dark background for input in top bar */
+      color: #e8eaed; /* Light text color */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <div class="back" onclick="goBack()">&#8592;</div>
+    <input type="text" id="searchInput" placeholder="Type here..." onkeydown="checkEnter(event)" />
+    <div class="icons">
+      <span>🎤</span>
+      <span>📷</span>
+    </div>
+  </div>
+
+  <div class="message">
+    Pro tip: try searching "How long have we been together?" ;)
+  </div>
+
+  <script>
+    // Function to go back to the previous page
+    function goBack() {
+      window.history.back(); // Go back to the previous page
+    }
+
+    // Event listener for the input field, detect "Enter" key in the top bar
+    function checkEnter(event) {
+      if (event.key === "Enter") {
+        const query = event.target.value.trim().toLowerCase();
+        if (query === "how long have we been together?") {
+          window.location.href = 'love.html'; // Redirect to next page
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>

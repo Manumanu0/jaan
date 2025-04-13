@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our Memories</title>
+  <!-- Add Font Awesome CDN -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      color: white;
+      text-align: center;
+      background: url('lo.jpg') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 50px;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    }
+
+    .heart-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .heart-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: white;
+    }
+
+    .heart-button {
+      background: white;
+      color: #e26ea6;
+      width: 100px;
+      height: 100px;
+      clip-path: path("M 50 15 C 20 0, 0 25, 50 80 C 100 25, 80 0, 50 15 Z");
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .heart-button:hover {
+      transform: scale(1.1);
+    }
+
+    .heart-label {
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .nav-button {
+      background-color: rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 12px 25px;
+      border: 2px solid white;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .nav-button:hover {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Let's recap our time together</h2>
+
+  <div class="heart-container">
+    <a href="chats.html" class="heart-link">
+      <!-- Changed to Font Awesome icon for Chats -->
+      <div class="heart-button">
+        <i class="fas fa-comment-dots"></i>
+      </div>
+      <div class="heart-label">Chats</div>
+    </a>
+    <a href="pictures.html" class="heart-link">
+      <!-- Changed to Font Awesome icon for Pictures -->
+      <div class="heart-button">
+        <i class="fas fa-image"></i>
+      </div>
+      <div class="heart-label">Pictures</div>
+    </a>
+    <a href="songs.html" class="heart-link">
+      <!-- Changed to Font Awesome icon for Song -->
+      <div class="heart-button">
+        <i class="fas fa-music"></i>
+      </div>
+      <div class="heart-label">Song</div>
+    </a>
+  </div>
+
+  <div class="nav-buttons">
+    <button class="nav-button" onclick="location.href='love.html'">← Previous page</button>
+    <button class="nav-button" onclick="location.href='date.html'">Next page →</button>
+  </div>
+
+</body>
+</html>

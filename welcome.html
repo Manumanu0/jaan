@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome My Love</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffe6f0;
+      text-align: center;
+      padding: 30px;
+      color: #a1005c;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.2em;
+    }
+    .countdown {
+      font-size: 2em;
+      margin: 20px 0;
+      font-weight: bold;
+    }
+    .section {
+      background: #fff0f5;
+      padding: 20px;
+      margin: 20px auto;
+      width: 80%;
+      max-width: 600px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .section-title {
+      font-weight: bold;
+      font-size: 1.5em;
+    }
+    button {
+      background: hotpink;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1em;
+      margin-top: 15px;
+    }
+    button:hover {
+      background: #e60073;
+    }
+    #popup {
+      display:none;
+      position:fixed;
+      top:50%;
+      left:50%;
+      transform:translate(-50%, -50%);
+      background:white;
+      padding:30px;
+      border-radius:15px;
+      box-shadow:0 0 10px rgba(0,0,0,0.3);
+      z-index:1000;
+      text-align:center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome, my Love! <span>❤️</span></h1>
+  <p>Today is all about you & me, our perfect date, and making the most beautiful memories together!</p>
+
+  <div class="countdown">
+    Counting the moments until our perfect date! ⏳💞<br>
+    <span id="timer">Loading...</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🌅 Morning Start the Day</div>
+    <p>Get ready for the most experience of your life on the pitch...</p>
+  </div>
+  <div class="section">
+    <div class="section-title">✈️ Traveling</div>
+    <p>Traveling the world with you feels like home, no matter where we are..</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">• Breakfast Together</div>
+    <p>Sharing sweet moments over your favorite breakfast.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🛍️ Shopping</div>
+    <p>Shopping with you is like finding hidden treasures every moment spent together is a priceless discovery.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🍽️ Lunch</div>
+    <p>Every bite shared with you is a taste of happiness, and I wouldn't want to enjoy lunch with anyone else. 🍽️❤️</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Ending the night</div>
+    <p>A perfect ending to our perfect day.</p>
+    <button onclick="showPopup()">Open 🌙</button>
+  </div>
+
+  <div class="section">
+    <!-- Button that will take you to the next page -->
+    <a href="heart.html">
+      <button>Click here for a surprise! 🎁</button>
+    </a>
+  </div>
+
+  <div id="popup">
+    <span style="font-size:1.5em; color:#a1005c;">
+      I love you, my Madam Jii! 🥰<br>
+      You are my forever, and I can't wait for all our future dates together! ❤️
+    </span>
+    <br><br>
+    <button onclick="closePopup()">✖</button>
+  </div>
+
+  <script>
+    function showPopup() {
+      document.getElementById("popup").style.display = "block";
+    }
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
+    // Countdown timer
+    function startCountdown(targetDateTime) {
+      const timerDisplay = document.getElementById('timer');
+
+      function updateTimer() {
+        const now = new Date();
+        const distance = new Date(targetDateTime) - now;
+
+        if (distance <= 0) {
+          timerDisplay.innerHTML = "It's our date time now! 💖";
+          clearInterval(interval);
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((distance / (1000 * 60)) % 60);
+        const seconds = Math.floor((distance / 1000) % 60);
+
+        timerDisplay.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+
+      updateTimer();
+      const interval = setInterval(updateTimer, 1000);
+    }
+
+    // Get date & time from localStorage
+    const savedDate = localStorage.getItem('perfectDateTime');
+    if (savedDate) {
+      startCountdown(savedDate);
+    } else {
+      document.getElementById('timer').innerText = "No date set yet! 💔";
+    }
+  </script>
+
+</body>
+</html>

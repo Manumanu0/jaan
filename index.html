@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Passcode Lock</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      position: relative;
+    }
+
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      filter: brightness(50%);
+      z-index: -1;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 40px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .title {
+      color: white;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .dot {
+      width: 16px;
+      height: 16px;
+      margin: 0 8px;
+      border: 2px solid white;
+      border-radius: 50%;
+      background-color: transparent;
+    }
+
+    .filled {
+      background-color: white;
+    }
+
+    .pad {
+      display: grid;
+      grid-template-columns: repeat(3, 60px);
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .btn {
+      background-color: rgba(255, 255, 255, 0.25);
+      color: white;
+      font-size: 22px;
+      border: none;
+      border-radius: 15px;
+      padding: 15px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .btn.zero, .btn.cancel {
+      grid-column: span 3;
+    }
+
+    .btn.cancel {
+      background-color: rgba(255, 255, 255, 0.15);
+      border: 2px solid white;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 18px;
+      height: 24px;
+      color: white;
+      transition: opacity 0.3s ease;
+    }
+
+    .shake {
+      animation: shake 0.4s;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      50% { transform: translateX(8px); }
+      75% { transform: translateX(-8px); }
+      100% { transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="background"></div>
+
+  <div class="container" id="container">
+    <div class="title" id="title">Enter Passcode</div>
+    <div class="dots" id="dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <div class="pad" id="pad"></div>
+    <div id="message"></div>
+  </div>
+
+  <script>
+    const config = {
+      correctPasscode: "0409",
+      passcodeTitle: "Enter Passcode",
+      successMessage: "Yayy!! :)",
+      incorrectPasscodeMessage: "Incorrect passcode, hint: our date of birth!",
+      cancelButtonText: "Cancel",
+      redirectTo: "google.html"
+    };
+
+    document.getElementById("title").textContent = config.passcodeTitle;
+
+    const pad = document.getElementById('pad');
+    const dots = document.getElementById('dots').children;
+    const container = document.getElementById('container');
+    const messageBox = document.getElementById('message');
+    let input = '';
+
+    const resetInput = () => {
+      input = '';
+      for (let dot of dots) {
+        dot.classList.remove('filled');
+      }
+    };
+
+    const showMessage = (text, isSuccess = false) => {
+      messageBox.textContent = text;
+      messageBox.style.color = isSuccess ? "#90ee90" : "red"; // Light green for success
+      messageBox.style.opacity = '1';
+    };
+
+    const shakeContainer = () => {
+      container.classList.add('shake');
+      setTimeout(() => {
+        container.classList.remove('shake');
+      }, 400);
+    };
+
+    const addNumber = (num) => {
+      if (input.length < 4) {
+        input += num;
+        dots[input.length - 1].classList.add('filled');
+      }
+
+      if (input.length === 4) {
+        setTimeout(() => {
+          if (input === config.correctPasscode) {
+            showMessage(config.successMessage, true);
+            setTimeout(() => {
+              window.location.href = config.redirectTo;
+            }, 1500);
+          } else {
+            showMessage(config.incorrectPasscodeMessage);
+            shakeContainer();
+          }
+          resetInput();
+        }, 300);
+      }
+    };
+
+    // Number buttons (1–9)
+    for (let i = 1; i <= 9; i++) {
+      const btn = document.createElement('button');
+      btn.className = 'btn';
+      btn.textContent = i;
+      btn.onclick = () => addNumber(i.toString());
+      pad.appendChild(btn);
+    }
+
+    // 0 button
+    const zeroBtn = document.createElement('button');
+    zeroBtn.className = 'btn zero';
+    zeroBtn.textContent = '0';
+    zeroBtn.onclick = () => addNumber('0');
+    pad.appendChild(zeroBtn);
+
+    // Cancel button
+    const cancelBtn = document.createElement('button');
+    cancelBtn.className = 'btn cancel';
+    cancelBtn.textContent = config.cancelButtonText;
+    cancelBtn.onclick = resetInput;
+    pad.appendChild(cancelBtn);
+  </script>
+
+</body>
+</html>
